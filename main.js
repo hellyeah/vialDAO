@@ -7,7 +7,7 @@ Moralis.start({ serverUrl, appId });
 async function login() {
     console.log('starting login')
     let user = Moralis.User.current();
-    
+
     if (!user) {
       user = await Moralis.authenticate({
         signingMessage: "Log in using Moralis",
@@ -27,6 +27,7 @@ async function login() {
     console.log("logged out");
   }
     async function fetchNFTs() {
+        let user = Moralis.User.current();
         // get NFTs for current user on Mainnet
         const userEthNFTs = await Moralis.Web3.getNFTs();
         console.log(userEthNFTs)
