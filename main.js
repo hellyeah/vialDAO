@@ -5,29 +5,9 @@ Moralis.start({ serverUrl, appId });
 
 /* Authentication code */
 async function login() {
+    console.log('starting login')
     let user = Moralis.User.current();
-              // get NFTs for current user on Mainnet
-
-              const userEthNFTs = await Moralis.Web3.getNFTs();
-              console.log(userEthNFTs)
-              console.log(userEthNFTs[0].token_uri)
-              var blah = await fetch(userEthNFTs[4].token_uri)
-              console.log(blah)
-                const data = await blah.json()
-                console.log(data.image)
-                const myDiv = document.getElementById("blahblah")
-                myDiv.style.backgroundImage=`url(${data.image})`;
-              // get testnet NFTs for user
-  
-            //   const testnetNFTs = await Moralis.Web3.getNFTs({ chain: ‘ropsten’ });
-  
-            //   // get polygon NFTs for address
-  
-            //   const options = { chain: ‘matic’, address: ‘0x…’ };
-  
-            //   const polygonNFTs = await Moralis.Web3.getNFTs(options);
-  
-            //   console.log(polygonNFTs)
+    
     if (!user) {
       user = await Moralis.authenticate({
         signingMessage: "Log in using Moralis",
@@ -46,7 +26,21 @@ async function login() {
     await Moralis.User.logOut();
     console.log("logged out");
   }
+    async function fetchNFTs() {
+        // get NFTs for current user on Mainnet
+        const userEthNFTs = await Moralis.Web3.getNFTs();
+        console.log(userEthNFTs)
+        console.log(userEthNFTs[0].token_uri)
+        var blah = await fetch(userEthNFTs[4].token_uri)
+        console.log(blah)
+        const data = await blah.json()
+        console.log(data.image)
+        const myDiv = document.getElementById("blahblah")
+        myDiv.style.backgroundImage=`url(${data.image})`;
+    }
+
   
   document.getElementById("btn-login").onclick = login;
   document.getElementById("btn-logout").onclick = logOut;
+  document.getElementById("btn-NFT").onclick = fetchNFTs;
 

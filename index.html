@@ -10,67 +10,9 @@
     <!-- 1. Include cryptozombies_abi.js here -->
   </head>
   <body>
-    <button class="enableEthereumButton">Enable Ethereum2</button>
-    <button class="enableGetAccounts">Get Accounts</button>
-
     <button id="btn-login">Moralis Metamask Login</button>
     <button id="btn-logout">Logout</button>
-    <button id="btn-printNFTs">Print NFTs</button>
+    <button id="btn-NFT">Print NFTs</button>
     <div id="blahblah" style="width:500px; height: 500px"></div>
-    <script>
-      // 2. Start code here
-        const ethereumButton = document.querySelector('.enableEthereumButton');
-        const accountsButton = document.querySelector('.enableGetAccounts');
-        const getAccountsResult = document.getElementById('getAccountsResult');
-
-        ethereumButton.addEventListener('click', () => {
-            console.log("tapped ethereum button")
-            //Will Start the metamask extension
-            ethereum.request({ method: 'eth_requestAccounts' });
-        });
-
-        //Eth_Accounts-getAccountsButton
-        accountsButton.addEventListener('click', async () => {
-            console.log("blah")
-            //we use eth_accounts because it returns a list of addresses owned by us.
-            const accounts = await ethereum.request({ method: 'eth_accounts' });
-            console.log(accounts[0])
-            //We take the first address in the array of addresses and display it
-            //getAccountsResult.innerHTML = accounts[0] || 'Not able to get accounts';
-        });
-
-
-
-      
-    //     let account;
-    //     function getAccount() {
-    //         window.ethereum ?
-    //         ethereum.request({method: "eth_requestAccounts"}).then((accounts) => {
-    //             account = accounts[0]
-    //         }).catch((err) => console.log(err))
-    //         : console.log("Please install MetaMask")
-    //     }
-    //     getAccount();
-
-    //   window.addEventListener('load', function() {
-    //       console.log("listener")
-
-    //     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-    //     if (typeof web3 !== 'undefined') {
-    //       // Use Mist/MetaMask's provider
-    //       web3js = new Web3(web3.currentProvider);
-    //       console.log(web3.currentProvider)
-    //     } else {
-    //       // Handle the case where the user doesn't have Metamask installed
-    //       // Probably show them a message prompting them to install Metamask
-    //       console.log('install metamask')
-    //     }
-
-    //     // Now you can start your app & access web3 freely:
-    //     // startApp()
-
-    //   })
-    </script>
-    <script type="text/javascript" src="./main.js"></script>
   </body>
 </html>
