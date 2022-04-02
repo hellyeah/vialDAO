@@ -30,14 +30,24 @@ async function login() {
         let user = Moralis.User.current();
         // get NFTs for current user on Mainnet
         const userEthNFTs = await Moralis.Web3.getNFTs();
-        console.log(userEthNFTs)
-        console.log(userEthNFTs[0].token_uri)
-        var blah = await fetch(userEthNFTs[4].token_uri)
-        console.log(blah)
-        const data = await blah.json()
-        console.log(data.image)
-        const myDiv = document.getElementById("blahblah")
-        myDiv.style.backgroundImage=`url(${data.image})`;
+        console.log("this many NFTs:" + userEthNFTs.length)
+        for (var i=0; i<userEthNFTs.length; i++) {
+            console.log(userEthNFTs[i].token_uri)
+            try {
+                var blah = await fetch(userEthNFTs[i].token_uri)
+                console.log(blah)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        // console.log(userEthNFTs)
+        // console.log(userEthNFTs[0].token_uri)
+        // var blah = await fetch(userEthNFTs[4].token_uri)
+        // console.log(blah)
+        // const data = await blah.json()
+        // console.log(data.image)
+        // const myDiv = document.getElementById("blahblah")
+        // myDiv.style.backgroundImage=`url(${data.image})`;
     }
 
   
